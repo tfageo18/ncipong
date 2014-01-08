@@ -98,24 +98,29 @@ function checkEventObj ( _event_ ){
 function shortcut() {
 	var winObj 		= checkEventObj(window.event);
 	var intKeyCode 	= winObj.keyCode;
-	// TOUCHE A : 65
-	// TOUCHE Z : 90
-	// TOUCHE O : 79
-	// TOUCHE P : 80
-	// TOUCHE R : 82
-	if (intKeyCode == 65) {
+	// TOUCHE A 		: 65
+	// TOUCHE Z 		: 90
+	// TOUCHE O 		: 79
+	// TOUCHE P			: 80
+	// TOUCHE R 		: 82
+	// TOUCHE 0 PAVE 	: 96
+	// TOUCHE 1 PAVE 	: 97
+	// TOUCHE 2 PAVE 	: 98
+	// TOUCHE 7 PAVE 	: 103
+	// TOUCHE 8 PAVE 	: 104
+	if (intKeyCode == 65 || intKeyCode == 97) {
 		addPointJ1();
 	}
-	if (intKeyCode == 90) {
+	if (intKeyCode == 90 || intKeyCode == 98 ) {
 		delPointJ1();
 	}
-	if (intKeyCode == 79) {
+	if (intKeyCode == 79 || intKeyCode == 103) {
 		addPointJ2();
 	}
-	if (intKeyCode == 80) {
+	if (intKeyCode == 80 || intKeyCode == 104) {
 		delPointJ2();
 	}
-	if (intKeyCode == 82) {
+	if (intKeyCode == 82 || intKeyCode == 96) {
 		raz();
 	}
 }
