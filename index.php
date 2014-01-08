@@ -15,7 +15,8 @@
   		</script>
 		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
 	</head>
-<body onload="pointZero();" onkeyup="shortcut();">
+<!-- <body onload="pointZero();" onkeyup="shortcut();" onmouseup="clique();"> -->
+<body onload="pointZero();" onkeyup="shortcut();" >
 	<header>
 		<center><h1><img src="img/ncipong.png"/>NCIPONG</h1></center>
 		<center><button type="button" class="btn btn-warning btn-lg" onclick="raz();">RAZ (_R_)</button></center>
@@ -32,8 +33,8 @@
  		</div>
 		<div class="col-md-6" style="width:375px;">
   			<center>
-  				<h3><span class="glyphicon glyphicon-user"></span> Joueur 2</h3>
-  				<h2><div id="pointJ2"></div></h2>
+  				<h3 style="color:BLUE;"><span class="glyphicon glyphicon-user"></span> Joueur 2</h3>
+  				<h2 style="color:BLUE;"><div id="pointJ2"></div></h2>
   				<button class="btn btn-success btn-lg" onclick="addPointJ2()">+1 POINT (_O_)</button>
   				<button class="btn btn-danger btn-lg" onclick="delPointJ2()">-1 POINT (_P_)</button>
   			</center>

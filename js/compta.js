@@ -119,3 +119,14 @@ function shortcut() {
 		raz();
 	}
 }
+
+/**
+ * En fonction du clique de la souris permet d'ajouter des points à un Joueur
+ */
+function clique() {
+	var winObj 		= checkEventObj(window.event);
+	// Clique gauche 	: 1
+	// Clique droit 	: 2
+	if (winObj.which == 1) addPointJ1();
+	if (winObj.which == 3) addPointJ2();
+}
