@@ -77,3 +77,45 @@ function delPointJ2() {
 function raz() {
 	document.location.href="index.php";
 }
+
+/**
+ * Function qui permet de retourner l'évenement de la pression d'une touche 
+ * @param _event_
+ * @returns
+ */
+function checkEventObj ( _event_ ){
+	// --- IE explorer
+	if ( window.event )
+		return window.event;
+	// --- Autre
+	else
+		return _event_;
+}
+
+/**
+ * En fonction de la touche appuyer permet d'ajouter ou de supprimer des points à un Joueur
+ */
+function shortcut() {
+	var winObj 		= checkEventObj(window.event);
+	var intKeyCode 	= winObj.keyCode;
+	// TOUCHE A : 65
+	// TOUCHE Z : 90
+	// TOUCHE O : 79
+	// TOUCHE P : 80
+	// TOUCHE R : 82
+	if (intKeyCode == 65) {
+		addPointJ1();
+	}
+	if (intKeyCode == 90) {
+		delPointJ1();
+	}
+	if (intKeyCode == 79) {
+		addPointJ2();
+	}
+	if (intKeyCode == 80) {
+		delPointJ2();
+	}
+	if (intKeyCode == 82) {
+		raz();
+	}
+}
