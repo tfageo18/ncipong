@@ -1,12 +1,66 @@
 /**
+ * Variables
+ */
+var score2Win  = 21;
+var service    = null;
+var pointJ1    = 0;
+var pointJ2    = 0;
+
+/**
+ * Fonction qui permet de choisir le premier joueur qui sert.
+ * @param joueur
+ */
+function setService(joueur) {
+	service = joueur;
+	updateService();
+}
+
+/**
+ * Fonction qui permet de choisir le nombre de point du match (11 ou 21).
+ */
+function updatePoint() {
+	score2Win = document.getElementById('selectPoints').options[document.getElementById('selectPoints').selectedIndex].value;
+}
+
+/**
+ * Mets à jour les div après le choix du premier serveur.
+ */
+function updateService() {
+	if(service == null) {
+		document.getElementById('pointJ1Srv').style.display 	= 'block';
+		document.getElementById('textJ1Srv').style.display 		= 'block';
+		document.getElementById('pointJ2Srv').style.display 	= 'block';
+		document.getElementById('textJ2Srv').style.display 		= 'block';
+		document.getElementById('pointJ1Btn').style.display 	= 'none';
+		document.getElementById('pointJ2Btn').style.display 	= 'none';
+		document.getElementById('iconServiceJ1').style.display 	= 'none';
+		document.getElementById('iconServiceJ2').style.display 	= 'none';
+	}	
+	else {
+		document.getElementById('pointJ1Srv').style.display 			= 'none';
+		document.getElementById('textJ1Srv').style.display 				= 'none';
+		document.getElementById('pointJ2Srv').style.display 			= 'none';
+		document.getElementById('textJ2Srv').style.display 				= 'none';
+		document.getElementById('pointJ1Btn').style.display 			= 'block';
+		document.getElementById('pointJ2Btn').style.display 			= 'block';
+		document.getElementById('iconServiceJ1').style.display 			= 'none';
+		document.getElementById('iconServiceJ2').style.display 			= 'none';
+		document.getElementById('iconServiceJ'+service).style.display 	= 'block';		
+	}
+}
+
+/**
  * Remet les points à Zéro pour les deux joueurs
  */
 function pointZero() {
-	var pointJ1 = 0;
-	var pointJ2 = 0;
+	pointJ1 = 0;
+	pointJ2 = 0;
+	service = null;
 				
 	document.getElementById('pointJ1').innerHTML = pointJ1;
 	document.getElementById('pointJ2').innerHTML = pointJ2;
+	
+	updateService();
 }
 
 /**
@@ -14,16 +68,16 @@ function pointZero() {
  * et on lui propose une nouvelle partie
  */
 function addPointJ1() {
-	pointJ1Avant 	= document.getElementById('pointJ1').innerHTML;
-	pointJ1 		= parseInt(pointJ1Avant)+1;
-	if (pointJ1 <= 21) {
+	pointJ1 	= parseInt(pointJ1)+1;
+	if (pointJ1 <= score2Win) {
 		document.getElementById('pointJ1').innerHTML = pointJ1;
-	} 
-	else { 
-		if (confirm("GG TU AS GAGNE JOUEUR1, une nouvelle partie pour ridiculiser Joueur 2?")){
-			document.location.href="index.php";
-		}
-	}			
+		var change = ((pointJ1 + pointJ2)%2) == 0;
+		setService(((change) ? ((service == 1) ? 2 : 1) : service));
+	} 			
+	
+	if (pointJ1 >= score2Win && confirm("GG TU AS GAGNE JOUEUR1, une nouvelle partie pour ridiculiser Joueur 2?")){
+		document.location.href="index.php";
+	}
 }
 
 /**
@@ -31,30 +85,32 @@ function addPointJ1() {
  * Le joueur 1 ne peut être en dessous de 0
  */
 function delPointJ1() {
-	pointJ1Avant 	= document.getElementById('pointJ1').innerHTML;
-	pointJ1 		= parseInt(pointJ1Avant)-1;
+	pointJ1 	= parseInt(pointJ1)-1;
 	if (pointJ1 < 0) {
 		alert ("Il est déjà à zéro, ne l'enfonce pas plus !!!");
 		pointJ1 = 0; 
 	}
 	document.getElementById('pointJ1').innerHTML = pointJ1;
+	
+	var change = ((pointJ1 + pointJ2)%2) != 0;
+	setService(((change) ? ((service == 1) ? 2 : 1) : service));
 }
 			
 /**
  * Ajoute un point au Joueur 2. Si le Joueur 2 atteint 21 alors il a un message de félication 
  * et on lui propose une nouvelle partie
  */
-function addPointJ2() {
-	pointJ2Avant 	= document.getElementById('pointJ2').innerHTML;
-	pointJ2 		= parseInt(pointJ2Avant)+1;
-	if (pointJ2 <= 21) {
-		document.getElementById('pointJ2').innerHTML = pointJ2;
-	} 
-	else { 
-		if (confirm("GG TU AS GAGNE JOUEUR2, une nouvelle partie pour ridiculiser Joueur 1?")){
-			document.location.href="index.php";
-		}
-	}		
+function addPointJ2() {	
+	pointJ2 	= parseInt(pointJ2)+1;
+	if (pointJ2 <= score2Win) {
+		document.getElementById('pointJ2').innerHTML = pointJ2;		
+		var change = ((pointJ1 + pointJ2)%2) == 0;
+		setService(((change) ? ((service == 1) ? 2 : 1) : service));
+	} 	
+	
+	if (pointJ2 >= score2Win && confirm("GG TU AS GAGNE JOUEUR2, une nouvelle partie pour ridiculiser Joueur 1?")){
+		document.location.href="index.php";
+	}	
 }
 
 /**
@@ -62,13 +118,15 @@ function addPointJ2() {
  * Le joueur 2 ne peut être en dessous de 0
  */
 function delPointJ2() {
-	pointJ2Avant 	= document.getElementById('pointJ2').innerHTML;
-	pointJ2 		= parseInt(pointJ2Avant)-1;
+	pointJ2 	= parseInt(pointJ2)-1;
 	if (pointJ2 < 0) {
 		alert ("Il est déjà à zéro, ne l'enfonce pas plus !!!");
 		pointJ2 = 0; 
 	}
 	document.getElementById('pointJ2').innerHTML = pointJ2;
+		
+	var change = ((pointJ1 + pointJ2)%2) != 0;
+	setService(((change) ? ((service == 1) ? 2 : 1) : service));
 }
 
 /**
@@ -96,7 +154,7 @@ function checkEventObj ( _event_ ){
  * En fonction de la touche appuyer permet d'ajouter ou de supprimer des points à un Joueur
  */
 function shortcut() {
-	var winObj 		= checkEventObj(window.event);
+	var winObj 	= checkEventObj(window.event);
 	var intKeyCode 	= winObj.keyCode;
 	// TOUCHE A 		: 65
 	// TOUCHE Z 		: 90
