@@ -23,15 +23,16 @@
 	</header>
 	<div class="row" style="width:800px; margin:0 auto;">
 		<div class="col-md-12">
-			<center><SCRIPT type="text/javascript" SRC="http://www.toutimages.com/horloge_flash/10.js"></SCRIPT></center>
+			<center>
+				<SCRIPT type="text/javascript" SRC="http://www.toutimages.com/horloge_flash/01.js"></SCRIPT>
+			</center>
 		</div>
 	</div>
-	<div class="row" style="width:800px; margin:0 auto;">
+	<div class="row" id="ChoixPoint" style="width:800px; margin:0 auto;">
 		<div class="col-md-12">
 			<center>
-				<h4 class="text-info">ETAPE 1 : Choisir le nombre de point du match (de base 21 points)</h4>
+				<h4 class="text-info">ETAPE 1 : Choisir le nombre de point du match</h4>
 				<select id="selectPoints" onchange="updatePoint()">
-					<option selected>--- Choisir ---</option>
 					<option value="11">11 points</option>
 					<option value="21">21 points</option>
 				</select>
@@ -50,7 +51,7 @@
 					<button class="btn btn-danger btn-lg" onclick="delPointJ1()">-1 POINT (_Z_)</button>
 				</div>
 				<p id="textJ1Srv" class="text-info">ETAPE 2 : Choisir qui commence à servir</p>
-				<button id="pointJ1Srv" class="btn btn-lg" onclick="setService(1)">ChoiJoueur 1 commence</button>
+				<button id="pointJ1Srv" class="btn btn-lg" onclick="setService(1)">Joueur 1 commence</button>
 			</center>
  		</div>
 		<div class="col-md-6" style="width:375px;">
@@ -69,6 +70,7 @@
 	
 	<div class="row" style="width:800px; margin:0 auto;">
 		<div class="col-md-12">
+			<hr />
 			<center><h2>LES REGLES</h2></center>
 			<ul>
 				<li>Un seul set gagnant</li>
@@ -76,6 +78,8 @@
 				<li>Pas de second service c'est pas du tennis!</li>
 				<li>Deux poins si tu touches la table + la teub</li>
 				<li>Un seul rebond et sur la table s'il vous plait!</li>
+				<li>Interdiction de toucher la tâble avec la raquette (Régle Rodrigue)</li>
+				<li>Un point sur la table permet au gagnant du point de crier SUCE !!!! à son adversaire</li>
 			</ul>
 		</div>
 	</div>

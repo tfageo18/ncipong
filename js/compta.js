@@ -1,7 +1,7 @@
 /**
  * Variables
  */
-var score2Win  = 21;
+var score2Win  = 11;
 var service    = null;
 var pointJ1    = 0;
 var pointJ2    = 0;
@@ -31,6 +31,7 @@ function updateService() {
 		document.getElementById('textJ1Srv').style.display 		= 'block';
 		document.getElementById('pointJ2Srv').style.display 	= 'block';
 		document.getElementById('textJ2Srv').style.display 		= 'block';
+		document.getElementById('ChoixPoint').style.display 	= 'block';
 		document.getElementById('pointJ1Btn').style.display 	= 'none';
 		document.getElementById('pointJ2Btn').style.display 	= 'none';
 		document.getElementById('iconServiceJ1').style.display 	= 'none';
@@ -41,6 +42,7 @@ function updateService() {
 		document.getElementById('textJ1Srv').style.display 				= 'none';
 		document.getElementById('pointJ2Srv').style.display 			= 'none';
 		document.getElementById('textJ2Srv').style.display 				= 'none';
+		document.getElementById('ChoixPoint').style.display 			= 'none';
 		document.getElementById('pointJ1Btn').style.display 			= 'block';
 		document.getElementById('pointJ2Btn').style.display 			= 'block';
 		document.getElementById('iconServiceJ1').style.display 			= 'none';
@@ -178,7 +180,7 @@ function shortcut() {
 	if (intKeyCode == 80 || intKeyCode == 104) {
 		delPointJ2();
 	}
-	if (intKeyCode == 82 || intKeyCode == 96) {
+	if (intKeyCode == 82) {
 		raz();
 	}
 }
